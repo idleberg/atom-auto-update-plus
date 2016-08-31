@@ -81,24 +81,8 @@ module.exports =
     expression
 
   notify: (notification) ->
-    command = @getTerminalNotifierPath()
-    return console.log("terminal-notifier is not found.") unless command
-
     args = []
     for key, value of notification
       args.push("-#{key}", value)
 
-    new BufferedProcess({command, args})
-
-  getTerminalNotifierPath: ->
-    unless @cachedTerminalNotifierPath == undefined
-      return @cachedTerminalNotifierPath
-
-    pattern = path.join(__dirname, '..', 'vendor', '**', 'terminal-notifier')
-    paths = glob.sync(pattern)
-
-    @cachedTerminalNotifierPath =
-      if paths.length == 0
-        null
-      else
-        paths[0]
+    atom.notifications.addSuccess("auto-update-plus", detail: args, dismissable: true)

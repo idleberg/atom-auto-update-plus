@@ -1,9 +1,9 @@
 {
-  "name": "auto-update-packages",
+  "name": "auto-update-plus",
   "main": "./lib/auto-update-packages",
   "version": "1.0.1",
   "description": "Keep your Atom packages up to date.",
-  "repository": "https://github.com/yujinakayama/atom-auto-update-packages",
+  "repository": "https://github.com/idleberg/atom-auto-update-packages",
   "license": "MIT",
   "os": [
     "darwin"
