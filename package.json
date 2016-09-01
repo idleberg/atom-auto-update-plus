@@ -1,9 +1,9 @@
 {
-  "name": "auto-update-packages",
-  "main": "./lib/auto-update-packages",
+  "name": "auto-update-plus",
+  "main": "./lib/main",
   "version": "1.0.1",
   "description": "Keep your Atom packages up to date.",
-  "repository": "https://github.com/yujinakayama/atom-auto-update-packages",
+  "repository": "https://github.com/idleberg/atom-auto-update-packages",
   "license": "MIT",
   "os": [
     "darwin"
@@ -12,11 +12,19 @@
     "atom": ">=0.206.0"
   },
   "dependencies": {
-    "glob": "^3.2.9",
-    "fs-plus": "^2.0.4"
+    "semver": "^5.3.0",
+    "semver.js": "^0.1.1"
   },
   "devDependencies": {
-    "coffee-script": "^1.7.1",
-    "coffeelint": "^1.1.0"
+    "gulp": "^3.9.1",
+    "gulp-coffeelint": "^0.6.0",
+    "gulp-debug": "^2.1.2",
+    "gulp-jshint": "^2.0.1",
+    "gulp-jsonlint": "^1.1.2",
+    "gulp-lesshint": "^2.0.0",
+    "jshint": "^2.9.3"
+  },
+  "scripts": {
+    "test": "gulp lint"
   }
 }
