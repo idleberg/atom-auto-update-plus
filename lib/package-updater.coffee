@@ -1,11 +1,11 @@
-path = require 'path'
-glob = require 'glob'
+meta = require '../package.json'
 {BufferedProcess} = require 'atom'
 
 ATOM_BUNDLE_IDENTIFIER = 'com.github.atom'
 INSTALLATION_LINE_PATTERN = /^Installing +([^@]+)@(\S+).+\s+(\S+)$/
 
 module.exports =
+
   updatePackages: (isAutoUpdate = true) ->
     @runApmUpgrade (log) =>
       entries = @parseLog(log)
@@ -19,7 +19,32 @@ module.exports =
 
   runApmUpgrade: (callback) ->
     command = atom.packages.getApmPath()
-    args = ['upgrade', '--no-confirm', '--no-color']
+
+    availablePackages = atom.packages.getAvailablePackageNames()
+    includedPackages = atom.config.get("#{meta.name}.includedPackages")
+    excludedPackages = atom.config.get("#{meta.name}.excludedPackages")
+
+
+    args = ["upgrade"]
+    
+    if includedPackages.length > 0
+      console.log "Updated included packages"
+      for includedPackage in includedPackages
+        args.push includedPackage
+    else if excludedPackages.length > 0
+      console.log "Updated excluded packages"
+      for excludedPackage in excludedPackages
+
+        if excludedPackage in availablePackages
+          index = availablePackages.indexOf excludedPackage
+          availablePackages.splice index, 1 if index
+      for availablePackage in availablePackages
+        args.push availablePackage
+
+    args.push "--no-confirm"
+    args.push "--no-color"
+
+    console.log "args: #{args}"
 
     log = ''
 
@@ -29,6 +54,7 @@ module.exports =
     exit = (exitCode) ->
       callback(log)
 
+    console.log command, args
     new BufferedProcess({command, args, stdout, exit})
 
   # Parsing the output of apm is a dirty way, but using atom-package-manager directly via JavaScript
@@ -81,24 +107,11 @@ module.exports =
     expression
 
   notify: (notification) ->
-    command = @getTerminalNotifierPath()
-    return console.log("terminal-notifier is not found.") unless command
-
     args = []
+    console.log "notification #{notification}"
     for key, value of notification
+      console.log "#{key}: #{value}"
       args.push("-#{key}", value)
 
-    new BufferedProcess({command, args})
-
-  getTerminalNotifierPath: ->
-    unless @cachedTerminalNotifierPath == undefined
-      return @cachedTerminalNotifierPath
-
-    pattern = path.join(__dirname, '..', 'vendor', '**', 'terminal-notifier')
-    paths = glob.sync(pattern)
-
-    @cachedTerminalNotifierPath =
-      if paths.length == 0
-        null
-      else
-        paths[0]
+    if atom.config.get("#{meta.name}.isVerbose")
+      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: true)

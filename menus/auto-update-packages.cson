@@ -3,9 +3,9 @@
   {
     'label': 'Packages'
     'submenu': [
-      'label': 'Auto Update Packages'
+      'label': 'Auto Update Plus'
       'submenu': [
-        { 'label': 'Update Now', 'command': 'auto-update-packages:update-now' }
+        { 'label': 'Update Now', 'command': 'auto-update-plus:update-now' }
       ]
     ]
   }
