@@ -5,7 +5,6 @@ ATOM_BUNDLE_IDENTIFIER = 'com.github.atom'
 INSTALLATION_LINE_PATTERN = /^Installing +([^@]+)@(\S+).+\s+(\S+)$/
 
 module.exports =
-
   updatePackages: (isAutoUpdate = true) ->
     @runApmUpgrade (log) =>
       entries = @parseLog(log)
@@ -27,15 +26,20 @@ module.exports =
     args = ["upgrade"]
     
     if includedPackages.length > 0
-      atom.notifications.addSuccess(meta.name, detail: "Updating included packages", dismissable: false) if atom.inDevMode()
+      atom.notifications.addInfo(meta.name, detail: "Updating included packages", dismissable: false) if atom.inDevMode()
+
       for includedPackage in includedPackages
         args.push includedPackage
+
     else if excludedPackages.length > 0
-      atom.notifications.addSuccess(meta.name, detail: "Updating excluded packages", dismissable: false) if atom.inDevMode()
+      atom.notifications.addInfo(meta.name, detail: "Updating excluded packages", dismissable: false) if atom.inDevMode()
+
       for excludedPackage in excludedPackages
         if excludedPackage in availablePackages
+          atom.notifications.addInfo(meta.name, detail: "Excluding #{excludedPackage}", dismissable: false) if atom.inDevMode()
           index = availablePackages.indexOf excludedPackage
           availablePackages.splice index, 1 if index
+
       for availablePackage in availablePackages
         args.push availablePackage
 
@@ -50,6 +54,7 @@ module.exports =
     exit = (exitCode) ->
       callback(log)
 
+    console.log "\n#{meta.name}:\n\n#{command}\n#{args}" if atom.inDevMode()
     new BufferedProcess({command, args, stdout, exit})
 
   # Parsing the output of apm is a dirty way, but using atom-package-manager directly via JavaScript
@@ -109,4 +114,4 @@ module.exports =
       args.push("-#{key}", value)
 
     if atom.config.get("#{meta.name}.updateNotification")
-      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: atom.config.get("#{meta.name}.dismissNotification"))
+      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: !atom.config.get("#{meta.name}.dismissNotification"))
