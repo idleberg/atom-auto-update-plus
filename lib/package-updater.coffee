@@ -24,7 +24,6 @@ module.exports =
     includedPackages = atom.config.get("#{meta.name}.includedPackages")
     excludedPackages = atom.config.get("#{meta.name}.excludedPackages")
 
-
     args = ["upgrade"]
     
     if includedPackages.length > 0

@@ -3,17 +3,10 @@
   "main": "./lib/main",
   "version": "0.0.0",
   "description": "Keep your Atom packages up to date.",
-  "repository": "https://github.com/idleberg/atom-auto-update-packages",
+  "repository": "https://github.com/idleberg/atom-auto-update-plus",
   "license": "MIT",
-  "os": [
-    "darwin"
-  ],
   "engines": {
-    "atom": ">=0.206.0"
-  },
-  "dependencies": {
-    "semver": "^5.3.0",
-    "semver.js": "^0.1.1"
+    "atom": ">=1.0.0 <2.0.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
