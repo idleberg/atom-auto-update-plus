@@ -5,6 +5,16 @@
   "description": "Keep your Atom packages up to date.",
   "repository": "https://github.com/idleberg/atom-auto-update-plus",
   "license": "MIT",
+  "contributors": [
+    {
+      "name": "Jan T. Sott",
+      "url": "https://github.com/idleberg"
+    },
+    {
+      "name": "Yuji Nakayama",
+      "url": "https://github.com/yujinakayama"
+    }
+  ],
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
