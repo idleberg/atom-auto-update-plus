@@ -108,5 +108,5 @@ module.exports =
       console.log "#{key}: #{value}"
       args.push("-#{key}", value)
 
-    if atom.config.get("#{meta.name}.isVerbose")
-      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: true)
+    if atom.config.get("#{meta.name}.updateNotification")
+      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: atom.config.get("#{meta.name}.dismissNotification"))

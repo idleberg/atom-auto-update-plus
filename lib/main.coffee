@@ -25,12 +25,18 @@ module.exports =
       minimum: MINIMUM_AUTO_UPDATE_BLOCK_DURATION_MINUTES
       default: 6 * 60
       order: 3
-    isVerbose:
-      title: "Verbose Update"
+    updateNotification:
+      title: "Notify on Update"
       description: "Enable to show notifications when packages have been updated"
       type: "boolean"
       default: true
       order: 4
+    dismissNotification:
+      title: "Dismiss Notification"
+      description: "Automatically close the update notification"
+      type: "boolean"
+      default: true
+      order: 5
 
   activate: (state) ->
     commands = {}
