@@ -33,7 +33,7 @@ module.exports =
       order: 4
     dismissNotification:
       title: "Dismiss Notification"
-      description: "Automatically close the update notification"
+      description: "Automatically dismiss the update notification after 5 seconds"
       type: "boolean"
       default: true
       order: 5
