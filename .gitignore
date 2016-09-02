@@ -1,6 +1,4 @@
-.DS_Store
-npm-debug.log
 node_modules
-*.zip
-tmp
+npm-debug.log
+spec
 todo.md
