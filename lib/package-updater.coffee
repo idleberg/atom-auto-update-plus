@@ -27,13 +27,12 @@ module.exports =
     args = ["upgrade"]
     
     if includedPackages.length > 0
-      console.log "Updated included packages"
+      atom.notifications.addSuccess(meta.name, detail: "Updating included packages", dismissable: false) if atom.inDevMode()
       for includedPackage in includedPackages
         args.push includedPackage
     else if excludedPackages.length > 0
-      console.log "Updated excluded packages"
+      atom.notifications.addSuccess(meta.name, detail: "Updating excluded packages", dismissable: false) if atom.inDevMode()
       for excludedPackage in excludedPackages
-
         if excludedPackage in availablePackages
           index = availablePackages.indexOf excludedPackage
           availablePackages.splice index, 1 if index
@@ -43,8 +42,6 @@ module.exports =
     args.push "--no-confirm"
     args.push "--no-color"
 
-    console.log "args: #{args}"
-
     log = ''
 
     stdout = (data) ->
@@ -53,7 +50,6 @@ module.exports =
     exit = (exitCode) ->
       callback(log)
 
-    console.log command, args
     new BufferedProcess({command, args, stdout, exit})
 
   # Parsing the output of apm is a dirty way, but using atom-package-manager directly via JavaScript
