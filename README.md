@@ -1,31 +1,51 @@
-[![Build Status](https://travis-ci.org/yujinakayama/atom-auto-update-packages.svg?branch=master)](https://travis-ci.org/yujinakayama/atom-auto-update-packages)
+# auto-update-plus
 
-# Auto-Update-Packages for Atom
+[![apm](https://img.shields.io/apm/l/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
+[![apm](https://img.shields.io/apm/v/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
+[![apm](https://img.shields.io/apm/dm/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
+[![Travis](https://img.shields.io/travis/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-auto-update-plus)
+[![David](https://img.shields.io/david/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://david-dm.org/idleberg/atom-auto-update-plus)
+[![David](https://img.shields.io/david/dev/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://david-dm.org/idleberg/atom-auto-update-plus#info=devDependencies)
 
-Keep your Atom packages up to date.
+Keeps your Atom packages up to date.
 
-![Screenshot](https://f.cloud.github.com/assets/83656/2521579/c30d4b2a-b4ac-11e3-898a-5c763e9a1c5a.png)
+This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
+
+* uses OS-independent Atom notications
+* uses localStorage for settings
+* allows to include/exclude specific packages
 
 ## Installation
 
+Install `auto-update-plus` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:
+
+`$ apm install auto-update-plus`
+
+### GitHub
+
+Change to your Atom packages directory:
+
 ```bash
-$ apm install auto-update-packages
+# Windows
+$ cd %USERPROFILE%\.atom\packages
+
+# Linux & macOS
+$ cd ~/.atom/packages/
+```
+
+Clone the repository as `auto-update-plus`:
+
+```bash
+$ git clone https://github.com/idleberg/atom-auto-update-plus auto-update-plus
 ```
 
 ## Usage
 
-Just sit tight. :)
+This package automatically checks for package updates every 6 hours by default. If any updates are available, it installs them and notifies you.
 
-auto-update-packages automatically checks for package updates every 6 hours by default.
-If any updates are available, it installs them and notifies you via OS X Notification Center.
+You can force an update from the Packages menu.
 
-Note that after the update you need to **Reload** (⌃⌥⌘L)
-to apply the updates to the opened Atom window.
-
-If you're impatient,
-run **Packages** menu > **Auto Update Packages** > **Update Now**.
-
-## Configuration
+### Settings
 
 You can configure auto-update-packages
 either
@@ -47,6 +67,8 @@ It has some margin around 5%.
 
 ## License
 
-Copyright (c) 2014 Yuji Nakayama
+This work is licensed under the [The MIT License](LICENSE.md).
 
-See the [LICENSE.txt](LICENSE.txt) for details.
+## Donate
+
+You are welcome support this project using [Flattr](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/atom-auto-update-plus) or Bitcoin `17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd`
