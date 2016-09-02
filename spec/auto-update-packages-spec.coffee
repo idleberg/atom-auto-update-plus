@@ -1,5 +1,6 @@
+meta = require ("../package.json")
 fs = require 'fs'
-AutoUpdatePackages = require '../lib/auto-update-packages'
+AutoUpdatePackages = require '../lib/main'
 PackageUpdater = require '../lib/package-updater'
 require './spec-helper'
 
@@ -49,38 +50,38 @@ describe 'auto-upgrade-packages', ->
         expect(AutoUpdatePackages.updatePackages).not.toHaveBeenCalled()
 
   describe '.getAutoUpdateBlockDuration', ->
-    describe 'when "auto-update-packages.intervalMinutes" is 360', ->
+    describe 'when "auto-update-plus.intervalMinutes" is 360', ->
       beforeEach ->
-        atom.config.set('auto-update-packages.intervalMinutes', 360)
+        atom.config.set('auto-update-plus.intervalMinutes', 360)
 
       it 'returns 21600000 (6 hours)', ->
         expect(AutoUpdatePackages.getAutoUpdateBlockDuration()).toBe(21600000)
 
-    describe 'when "auto-update-packages.intervalMinutes" is 30', ->
+    describe 'when "auto-update-plus.intervalMinutes" is 30', ->
       beforeEach ->
-        atom.config.set('auto-update-packages.intervalMinutes', 30)
+        atom.config.set('auto-update-plus.intervalMinutes', 30)
 
       it 'returns 1800000', ->
         expect(AutoUpdatePackages.getAutoUpdateBlockDuration()).toBe(1800000)
 
-    describe 'when "auto-update-packages.intervalMinutes" is 14', ->
+    describe 'when "auto-update-plus.intervalMinutes" is 14', ->
       beforeEach ->
-        atom.config.set('auto-update-packages.intervalMinutes', 14)
+        atom.config.set('auto-update-plus.intervalMinutes', 14)
 
       it 'returns 900000 (15 minutes) to avoid too frequent access to the server', ->
         expect(AutoUpdatePackages.getAutoUpdateBlockDuration()).toBe(900000)
 
   describe '.getAutoUpdateCheckInterval', ->
-    describe 'when "auto-update-packages.intervalMinutes" is 360', ->
+    describe 'when "auto-update-plus.intervalMinutes" is 360', ->
       beforeEach ->
-        atom.config.set('auto-update-packages.intervalMinutes', 360)
+        atom.config.set('auto-update-plus.intervalMinutes', 360)
 
       it 'returns 1440000 (24 minutes)', ->
         expect(AutoUpdatePackages.getAutoUpdateCheckInterval()).toBe(1440000)
 
-    describe 'when "auto-update-packages.intervalMinutes" is 30', ->
+    describe 'when "auto-update-plus.intervalMinutes" is 30', ->
       beforeEach ->
-        atom.config.set('auto-update-packages.intervalMinutes', 30)
+        atom.config.set('auto-update-plus.intervalMinutes', 30)
 
       it 'returns 120000 (2 minutes)', ->
         expect(AutoUpdatePackages.getAutoUpdateCheckInterval()).toBe(120000)
