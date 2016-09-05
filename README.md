@@ -10,9 +10,9 @@ Keeps your Atom packages up to date.
 
 This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
 
-* uses OS-independent Atom notications
-* uses localStorage for settings
-* allows to include/exclude specific packages
+* OS-independent Atom notications
+* localStorage for settings
+* inclusion/exclusion of specific packages
 * more to come!
 
 ## Installation
