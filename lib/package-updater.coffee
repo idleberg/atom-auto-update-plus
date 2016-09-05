@@ -54,7 +54,6 @@ module.exports =
     exit = (exitCode) ->
       callback(log)
 
-    console.log "\n#{meta.name}:\n\n#{command}\n#{args}" if atom.inDevMode()
     new BufferedProcess({command, args, stdout, exit})
 
   # Parsing the output of apm is a dirty way, but using atom-package-manager directly via JavaScript
@@ -108,9 +107,7 @@ module.exports =
 
   notify: (notification) ->
     args = []
-    console.log "notification #{notification}"
     for key, value of notification
-      console.log "#{key}: #{value}"
       args.push("-#{key}", value)
 
     if atom.config.get("#{meta.name}.updateNotification")
