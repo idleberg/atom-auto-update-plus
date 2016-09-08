@@ -59,9 +59,10 @@ module.exports =
       @updatePackagesIfAutoUpdateBlockIsExpired()
     , @getAutoUpdateCheckInterval()
 
-    # @configSubscription = atom.config.onDidChange meta.name, =>
-    #   @disableAutoUpdate()
-    #   @enableAutoUpdate()
+    @configSubscription = atom.config.onDidChange "#{meta.name}.intervalMinutes", ({newValue, oldValue}) =>
+      console.log "Changed update interval to #{newValue}" if atom.inDevMode()
+      @disableAutoUpdate()
+      @enableAutoUpdate()
 
   disableAutoUpdate: ->
     @configSubscription?.dispose()

@@ -26,17 +26,17 @@ module.exports =
     args = ["upgrade"]
     
     if includedPackages.length > 0
-      atom.notifications.addInfo(meta.name, detail: "Updating included packages", dismissable: false) if atom.inDevMode()
+      console.log "Updating included packages" if atom.inDevMode()
 
       for includedPackage in includedPackages
         args.push includedPackage
 
     else if excludedPackages.length > 0
-      atom.notifications.addInfo(meta.name, detail: "Updating excluded packages", dismissable: false) if atom.inDevMode()
+      console.log "Updating excluded packages:" if atom.inDevMode()
 
       for excludedPackage in excludedPackages
         if excludedPackage in availablePackages
-          atom.notifications.addInfo(meta.name, detail: "Excluding #{excludedPackage}", dismissable: false) if atom.inDevMode()
+          console.log "- #{excludedPackage}"if atom.inDevMode()
           index = availablePackages.indexOf excludedPackage
           availablePackages.splice index, 1 if index
 
@@ -107,7 +107,9 @@ module.exports =
 
   notify: (notification) ->
     args = []
+    console.log "notification #{notification}"
     for key, value of notification
+      console.log "#{key}: #{value}"
       args.push("-#{key}", value)
 
     if atom.config.get("#{meta.name}.updateNotification")
