@@ -16,7 +16,7 @@ gulp.task('coffeelint', function () {
     gulp.src(['./**/*.cson', './**/*.coffee', self])
         .pipe(debug({title: 'coffeelint:'}))
         .pipe(coffeelint())
-        .pipe(coffeelint.reporter());
+        .pipe(coffeelint.reporter('fail'));
 });
 
 // Lint LESS files
