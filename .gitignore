@@ -2,3 +2,4 @@ node_modules
 npm-debug.log
 spec/*
 todo.md
+yarn.lock
