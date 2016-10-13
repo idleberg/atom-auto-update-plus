@@ -96,7 +96,7 @@ module.exports =
   # so we need to share the last updated time via a file between the instances.
   loadLastUpdateTime: ->
     try
-      lastUpdateTime = localStorage.setItem("#{meta.name}.lastUpdateTime")
+      lastUpdateTime = localStorage.getItem("#{meta.name}.lastUpdateTime")
       parseInt(lastUpdateTime)
     catch
       null
