@@ -21,7 +21,7 @@ Install `auto-update-plus` from Atom's [Package Manager](http://flight-manual.at
 
 `$ apm install auto-update-plus`
 
-### GitHub
+### Using Git
 
 Change to your Atom packages directory:
 
