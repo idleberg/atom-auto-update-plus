@@ -103,4 +103,3 @@ module.exports =
 
   saveLastUpdateTime: ->
     localStorage.setItem("#{meta.name}.lastUpdateTime", Date.now().toString())
-
