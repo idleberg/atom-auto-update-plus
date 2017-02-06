@@ -24,7 +24,7 @@ module.exports =
     excludedPackages = atom.config.get("#{meta.name}.excludedPackages")
 
     args = ["upgrade"]
-    
+
     if includedPackages.length > 0
       console.log "Packages included in update:" if atom.inDevMode()
 
@@ -112,4 +112,12 @@ module.exports =
       args.push("-#{key}", value)
 
     if atom.config.get("#{meta.name}.updateNotification")
-      atom.notifications.addSuccess(meta.name, detail: notification.message, dismissable: !atom.config.get("#{meta.name}.dismissNotification"))
+      atom.notifications.addSuccess(
+        meta.name,
+        detail: notification.message
+        dismissable: !atom.config.get("#{meta.name}.dismissNotification")
+        buttons: [{
+          text: 'Restart',
+          onDidClick: -> atom.restartApplication()
+        }]
+      )
