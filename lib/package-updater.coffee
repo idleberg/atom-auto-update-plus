@@ -125,7 +125,7 @@ module.exports =
 
     if atom.config.get("#{meta.name}.updateNotification")
       require("./ga").sendEvent "package-updater", "Show Notification"
-      console.log("Show Notification") if @getConfig("debugMode")
+      console.log("Show Notification") if Util.getConfig("debugMode")
 
     notifyOptions = {
       detail: notification.message
