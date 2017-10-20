@@ -1,4 +1,5 @@
-meta = require ("../package.json")
+meta = require "../package.json"
+Util = require "./util"
 PackageUpdater = null
 
 WARMUP_WAIT = 10 * 1000
@@ -19,9 +20,9 @@ module.exports =
       default: []
       order: 2
     intervalMinutes:
-      title: 'Update Interval'
+      title: "Update Interval"
       description: "Set the default update interval in minutes"
-      type: 'integer'
+      type: "integer"
       minimum: MINIMUM_AUTO_UPDATE_BLOCK_DURATION_MINUTES
       default: 6 * 60
       order: 3
@@ -44,11 +45,17 @@ module.exports =
       default: 5
       minimum: 3
       order: 6
+    debugMode:
+      title: "Debug Mode"
+      description: "Enable to output details in your console"
+      type: "boolean"
+      default: false
+      order: 7
 
   activate: (state) ->
     commands = {}
     commands["#{meta.name}:update-now"] = => @updatePackages(false)
-    @commandSubscription = atom.commands.add('atom-workspace', commands)
+    @commandSubscription = atom.commands.add("atom-workspace", commands)
 
     setTimeout =>
       @enableAutoUpdate()
@@ -67,7 +74,7 @@ module.exports =
     , @getAutoUpdateCheckInterval()
 
     @configSubscription = atom.config.onDidChange "#{meta.name}.intervalMinutes", ({newValue, oldValue}) =>
-      console.log "Changed update interval to #{newValue}" if atom.inDevMode()
+      console.log "Changed update interval to #{newValue}" if Util.getConfig("debugMode")
       @disableAutoUpdate()
       @enableAutoUpdate()
 
@@ -84,7 +91,7 @@ module.exports =
       @updatePackages()
 
   updatePackages: (isAutoUpdate = true) ->
-    PackageUpdater ?= require './package-updater'
+    PackageUpdater ?= require "./package-updater"
     PackageUpdater.updatePackages(isAutoUpdate)
     @saveLastUpdateTime()
 
@@ -106,6 +113,7 @@ module.exports =
       lastUpdateTime = localStorage.getItem("#{meta.name}.lastUpdateTime")
       parseInt(lastUpdateTime)
     catch
+      localStorage.setItem("#{meta.name}.lastUpdateTime", Date.now())
       null
 
   saveLastUpdateTime: ->

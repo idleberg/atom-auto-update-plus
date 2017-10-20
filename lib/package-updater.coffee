@@ -1,4 +1,5 @@
 meta = require "../package.json"
+Util = require "./util"
 {BufferedProcess} = require "atom"
 
 ATOM_BUNDLE_IDENTIFIER = "com.github.atom"
@@ -16,6 +17,7 @@ module.exports =
         packageWording = "packages"
 
       require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
+      console.log("Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})") if Util.getConfig("debugMode")
 
       return unless summary
       @notify
@@ -120,6 +122,9 @@ module.exports =
       args.push("-#{key}", value)
 
     if atom.config.get("#{meta.name}.updateNotification")
+      require("./ga").sendEvent "package-updater", "Show Notification"
+      console.log("Show Notification") if Util.getConfig("debugMode")
+
       atom.notifications.addSuccess(
         meta.name,
         detail: notification.message
@@ -127,6 +132,10 @@ module.exports =
         buttons: [{
           text: "Restart"
           className: "icon icon-sync"
-          onDidClick: -> atom.restartApplication()
+          onDidClick: ->
+            require("./ga").sendEvent "package-updater", "Restarting Application"
+            console.log("Restarting Application") if Util.getConfig("debugMode")
+
+            atom.restartApplication()
         }]
       )
