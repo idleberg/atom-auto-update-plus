@@ -1,7 +1,7 @@
-meta = require '../package.json'
-{BufferedProcess} = require 'atom'
+meta = require "../package.json"
+{BufferedProcess} = require "atom"
 
-ATOM_BUNDLE_IDENTIFIER = 'com.github.atom'
+ATOM_BUNDLE_IDENTIFIER = "com.github.atom"
 INSTALLATION_LINE_PATTERN = /^Installing +([^@]+)@(\S+).+\s+(\S+)$/
 
 module.exports =
@@ -9,9 +9,17 @@ module.exports =
     @runApmUpgrade (log) =>
       entries = @parseLog(log)
       summary = @generateSummary(entries, isAutoUpdate)
+
+      if entries.length is 1
+        packageWording = "package"
+      else
+        packageWording "packages"
+
+      require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
+
       return unless summary
       @notify
-        title: 'Atom Package Updates'
+        title: "Atom Package Updates"
         message: summary
         sender: ATOM_BUNDLE_IDENTIFIER
         activate: ATOM_BUNDLE_IDENTIFIER
@@ -47,7 +55,7 @@ module.exports =
     args.push "--no-confirm"
     args.push "--no-color"
 
-    log = ''
+    log = ""
 
     stdout = (data) ->
       log += data
@@ -58,19 +66,19 @@ module.exports =
     new BufferedProcess({command, args, stdout, exit})
 
   # Parsing the output of apm is a dirty way, but using atom-package-manager directly via JavaScript
-  # is probably more brittle than parsing the output since it's a private package.
+  # is probably more brittle than parsing the output since it"s a private package.
   # /Applications/Atom.app/Contents/Resources/app/apm/node_modules/atom-package-manager
   parseLog: (log) ->
-    lines = log.split('\n')
+    lines = log.split("\n")
 
     for line in lines
       matches = line.match(INSTALLATION_LINE_PATTERN)
       continue unless matches?
       [_match, name, version, result] = matches
 
-      'name': name
-      'version': version
-      'isInstalled': result == '\u2713'
+      "name": name
+      "version": version
+      "isInstalled": result == "\u2713"
 
   generateSummary: (entries, isAutoUpdate = true) ->
     successfulEntries = entries.filter (entry) ->
@@ -81,26 +89,26 @@ module.exports =
       entry.name
 
     summary =
-      if successfulEntries.length <= 5
+      if successfulEntries.length <= atom.config.get("#{meta.name}.maximumPackageDetail")
         @generateEnumerationExpression(names)
       else
         "#{successfulEntries.length} packages"
 
-    summary += if successfulEntries.length == 1 then ' has' else ' have'
-    summary += ' been updated'
-    summary += ' automatically' if isAutoUpdate
-    summary += '.'
+    summary += if successfulEntries.length == 1 then " has" else " have"
+    summary += " been updated"
+    summary += " automatically" if isAutoUpdate
+    summary += "."
     summary
 
   generateEnumerationExpression: (items) ->
-    expression = ''
+    expression = ""
 
     for item, index in items
       if index > 0
         if index + 1 < items.length
-          expression += ', '
+          expression += ", "
         else
-          expression += ' and '
+          expression += " and "
 
       expression += item
 
@@ -117,7 +125,8 @@ module.exports =
         detail: notification.message
         dismissable: !atom.config.get("#{meta.name}.dismissNotification")
         buttons: [{
-          text: 'Restart',
+          text: "Restart"
+          className: "icon icon-sync"
           onDidClick: -> atom.restartApplication()
         }]
       )

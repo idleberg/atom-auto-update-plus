@@ -37,6 +37,13 @@ module.exports =
       type: "boolean"
       default: true
       order: 5
+    maximumPackageDetail:
+      title: "Maximum Package Detail"
+      description: "Specify the maximum number of package names displayed in the notification (minimum is 3)"
+      type: "number"
+      default: 5
+      minimum: 3
+      order: 6
 
   activate: (state) ->
     commands = {}
