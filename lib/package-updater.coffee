@@ -13,7 +13,7 @@ module.exports =
       if entries.length is 1
         packageWording = "package"
       else
-        packageWording "packages"
+        packageWording = "packages"
 
       require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
 
