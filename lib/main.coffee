@@ -38,19 +38,31 @@ module.exports =
       type: "boolean"
       default: true
       order: 5
+    notificationStyle:
+      title: "Notification Style"
+      description: "Specify a style for the notification popup (Success green, Info blue, Warning yellow, and Error red"
+      type: "string"
+      enum: [
+        "Success"
+        "Info"
+        "Warning"
+        "Error"
+      ]
+      default: "Success"
+      order: 6
     maximumPackageDetail:
       title: "Maximum Package Detail"
       description: "Specify the maximum number of package names displayed in the notification (minimum is 3)"
       type: "number"
       default: 5
       minimum: 3
-      order: 6
+      order: 7
     debugMode:
       title: "Debug Mode"
       description: "Enable to output details in your console"
       type: "boolean"
       default: false
-      order: 7
+      order: 8
 
   activate: (state) ->
     commands = {}
