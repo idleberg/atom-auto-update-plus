@@ -40,7 +40,7 @@ module.exports =
       console.log "Packages included in update:" if Util.getConfig("debugMode")
 
       for includedPackage in includedPackages
-        require("./ga").sendEvent "package-updater", " - updating '#{includedPackage}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
+        require("./ga").sendEvent "package-updater", " - including '#{includedPackage}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
         console.log "- #{includedPackage}" if Util.getConfig("debugMode")
         args.push includedPackage
 
@@ -49,6 +49,7 @@ module.exports =
 
       for excludedPackage in excludedPackages
         if excludedPackage in availablePackages
+          require("./ga").sendEvent "package-updater", " - excluding '#{includedPackage}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
           console.log "- #{excludedPackage}" if Util.getConfig("debugMode")
           index = availablePackages.indexOf excludedPackage
           availablePackages.splice index, 1 if index
