@@ -30,5 +30,8 @@
   },
   "scripts": {
     "test": "gulp lint"
+  },
+  "dependencies": {
+    "getmac": "^1.2.1"
   }
 }
