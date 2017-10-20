@@ -135,7 +135,7 @@ module.exports =
           text: "Restart"
           className: "icon icon-sync"
           onDidClick: ->
-            require("./ga").sendEvent "package-updater", "Restarting Application"
+            require("./ga").sendEvent "package-updater", "Restart Application"
             console.log("Restarting Application") if Util.getConfig("debugMode")
 
             atom.restartApplication()
