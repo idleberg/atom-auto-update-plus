@@ -130,15 +130,17 @@ module.exports =
     notifyOptions = {
       detail: notification.message
       dismissable: !atom.config.get("#{meta.name}.dismissNotification")
-      buttons: [{
-        text: "Restart"
-        className: "icon icon-sync"
-        onDidClick: ->
-          require("./ga").sendEvent "package-updater", "Restart Application"
-          console.log("Restarting Application") if Util.getConfig("debugMode")
+      buttons: [
+          {
+          text: "Restart"
+          className: "icon icon-sync"
+          onDidClick: ->
+            require("./ga").sendEvent "package-updater", "Restart Application"
+            console.log("Restart Application") if Util.getConfig("debugMode")
 
-          atom.restartApplication()
-      }]
+            atom.restartApplication()
+        }
+      ]
     }
 
     Util.notification("**#{meta.name}**", notifyOptions)

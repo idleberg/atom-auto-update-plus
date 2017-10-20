@@ -40,7 +40,7 @@ module.exports =
       order: 5
     notificationStyle:
       title: "Notification Style"
-      description: "Specify a style for the notification popup (Success green, Info blue, Warning yellow, and Error red"
+      description: "Specify a style for the notification popup (*Success=green*, *Info=blue*, *Warning=yellow*, and *Error=red*)"
       type: "string"
       enum: [
         "Success"
