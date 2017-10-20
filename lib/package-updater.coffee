@@ -11,13 +11,11 @@ module.exports =
       entries = @parseLog(log)
       summary = @generateSummary(entries, isAutoUpdate)
 
-      if entries.length is 1
-        packageWording = "package"
-      else
-        packageWording = "packages"
+      updateWording = if isAutoUpdate is true then "Auto-updating" else "Updating"
+      packageWording =if entries.length is 1 then " package" else " packages"
 
       if entries.length > 0
-        require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
+        require("./ga").sendEvent "package-updater", "#{updateWording} #{entries.length} #{packageWording} (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
         console.log("Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})") if Util.getConfig("debugMode")
 
       return unless summary
@@ -40,7 +38,6 @@ module.exports =
       console.log "Packages included in update:" if Util.getConfig("debugMode")
 
       for includedPackage in includedPackages
-        require("./ga").sendEvent "package-updater", "Updating '#{includedPackage}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
         console.log "- #{includedPackage}" if Util.getConfig("debugMode")
         args.push includedPackage
 
@@ -55,7 +52,6 @@ module.exports =
 
     else
       for availablePackage in availablePackages
-        require("./ga").sendEvent "package-updater", "Updating '#{availablePackages}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
         args.push availablePackage
 
     args.push "--no-confirm"
