@@ -16,8 +16,9 @@ module.exports =
       else
         packageWording = "packages"
 
-      require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
-      console.log("Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})") if Util.getConfig("debugMode")
+      if entries.length > 0
+        require("./ga").sendEvent "package-updater", "Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})"
+        console.log("Updating #{entries.length} #{packageWording} (auto: #{isAutoUpdate})") if Util.getConfig("debugMode")
 
       return unless summary
       @notify
@@ -36,18 +37,19 @@ module.exports =
     args = ["upgrade"]
 
     if includedPackages.length > 0
-      console.log "Packages included in update:" if atom.inDevMode()
+      console.log "Packages included in update:" if Util.getConfig("debugMode")
 
       for includedPackage in includedPackages
-        console.log "- #{includedPackage}" if atom.inDevMode()
+        require("./ga").sendEvent "package-updater", " - updating '#{includedPackage}' (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
+        console.log "- #{includedPackage}" if Util.getConfig("debugMode")
         args.push includedPackage
 
     else if excludedPackages.length > 0
-      console.log "Packages excluded from update:" if atom.inDevMode()
+      console.log "Packages excluded from update:" if Util.getConfig("debugMode")
 
       for excludedPackage in excludedPackages
         if excludedPackage in availablePackages
-          console.log "- #{excludedPackage}" if atom.inDevMode()
+          console.log "- #{excludedPackage}" if Util.getConfig("debugMode")
           index = availablePackages.indexOf excludedPackage
           availablePackages.splice index, 1 if index
 
