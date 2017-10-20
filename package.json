@@ -1,7 +1,7 @@
 {
   "name": "auto-update-plus",
   "main": "./lib/main",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Keep your Atom packages up to date.",
   "repository": "https://github.com/idleberg/atom-auto-update-plus",
   "license": "MIT",
