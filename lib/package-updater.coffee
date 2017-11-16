@@ -12,7 +12,7 @@ module.exports =
       summary = @generateSummary(entries, isAutoUpdate)
 
       updateWording = if isAutoUpdate is true then "Auto-updating" else "Updating"
-      packageWording =if entries.length is 1 then " package" else " packages"
+      packageWording =if entries.length is 1 then "package" else "packages"
 
       if entries.length > 0
         require("./ga").sendEvent "package-updater", "#{updateWording} #{entries.length} #{packageWording} (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
