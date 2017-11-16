@@ -26,9 +26,11 @@
     "gulp-jshint": "^2.0.4",
     "gulp-jsonlint": "^1.2.0",
     "gulp-lesshint": "^4.0.0",
+    "husky": "^0.14.3",
     "jshint": "^2.9.5"
   },
   "scripts": {
+    "precommit": "gulp lint",
     "test": "gulp lint"
   },
   "dependencies": {
