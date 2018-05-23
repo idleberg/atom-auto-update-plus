@@ -123,7 +123,7 @@ module.exports =
   loadLastUpdateTime: ->
     try
       lastUpdateTime = localStorage.getItem("#{meta.name}.lastUpdateTime")
-      parseInt(lastUpdateTime)
+      Number(lastUpdateTime)
     catch
       localStorage.setItem("#{meta.name}.lastUpdateTime", Date.now())
       null
