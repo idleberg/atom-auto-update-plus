@@ -15,7 +15,7 @@ module.exports =
       packageWording =if entries.length is 1 then "package" else "packages"
 
       if entries.length > 0
-        require("./ga").sendEvent "package-updater", "#{updateWording} #{entries.length} #{packageWording} (Atom v#{atom.appVersion} #{atom.getReleaseChannel()})"
+        require("./ga").sendEvent "package-updater", "#{updateWording} #{entries.length} #{packageWording}"
         console.log("#{updateWording} #{entries.length} #{packageWording}") if Util.getConfig("debugMode")
 
       return unless summary
