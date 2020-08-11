@@ -46,7 +46,3 @@ This package automatically checks for package updates every 6 hours by default. 
 ## License
 
 This work is licensed under the [The MIT License](LICENSE.md).
-
-## Donate
-
-You are welcome support this project using [Flattr](https://flattr.com/submit/auto?user_id=idleberg&url=https://github.com/idleberg/atom-auto-update-plus) or Bitcoin `17CXJuPsmhuTzFV2k4RKYwpEHVjskJktRd`
