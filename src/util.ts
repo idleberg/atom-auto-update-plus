@@ -37,9 +37,9 @@ async function initUpdate(): Promise<void> {
     return;
   }
 
-  await Promise.all(outdatedPackages.map(async packageName => await updatePackage(packageName)));
+  const updatedPackages = await (Promise as any).allSettled(outdatedPackages.map(async packageName => await updatePackage(packageName)));
 
-  notifyUser(outdatedPackages);
+  notifyUser(updatedPackages.filter(item => item).map(item => item.value));
   setLastUpdate();
 }
 
@@ -67,15 +67,19 @@ function updateIsDue(): boolean {
 
 }
 
-async function updatePackage(packageName: string) {
+async function updatePackage(packageName: string): Promise<string> {
   const apmPath = atom.packages.getApmPath();
 
   try {
     Logger.log(`Updating '${packageName}'`);
     await execa(apmPath, ['update', packageName, '--no-confirm']);
   } catch (err) {
-    Logger.error(`Failed to install '${packageName}'`)
+    const errorMessage = `Failed to install '${packageName}'`;
+    Logger.error(errorMessage);
+    throw Error(errorMessage);
   }
+
+  return packageName;
 }
 
 function notifyUser(packageNames) {
