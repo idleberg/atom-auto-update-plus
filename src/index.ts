@@ -21,6 +21,7 @@ const PackageControl = {
       atom.config.observe(`${meta.name}.hideUpdateStatusView`, hideStatusBar)
     );
 
+    // Migrate from v0.5
     this.migrate();
 
     // Defer

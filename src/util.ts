@@ -120,12 +120,11 @@ function generateEnumerationExpression(items: string[]): string {
   return expression;
 }
 
-async function getOutdatedPackages(): Promise<any[]> {
+async function getOutdatedPackages(): Promise<string[]> {
   Logger.log('Retrieving outdated packages')
 
   const apmPath: string = atom.packages.getApmPath();
   let response;
-
 
   try {
     response = await execa(apmPath, ['update', '--compatible', '--json', '--list']);
