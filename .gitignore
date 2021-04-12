@@ -1,5 +1,12 @@
-node_modules
-npm-debug.log
-package-lock.json
-spec/*
-todo.md
+# Package Managers
+bower_components/
+node_modules/
+*npm-debug.log*
+yarn-error.log
+
+# Development
+.eslintcache
+.rollup.cache/
+.stylelintcache
+.yo-rc.json
+tsconfig.tsbuildinfo

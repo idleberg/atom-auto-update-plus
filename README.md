@@ -1,10 +1,10 @@
 # auto-update-plus
 
-[![apm](https://img.shields.io/apm/l/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
-[![apm](https://img.shields.io/apm/v/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
-[![apm](https://img.shields.io/apm/dm/auto-update-plus.svg?style=flat-square)](https://atom.io/packages/auto-update-plus)
-[![Travis](https://img.shields.io/travis/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://travis-ci.org/idleberg/atom-auto-update-plus)
-[![David](https://img.shields.io/david/dev/idleberg/atom-auto-update-plus.svg?style=flat-square)](https://david-dm.org/idleberg/atom-auto-update-plus?type=dev)
+[![apm](https://flat.badgen.net/apm/license/auto-update-plus)](https://atom.io/packages/auto-update-plus)
+[![apm](https://flat.badgen.net/apm/v/auto-update-plus)](https://atom.io/packages/auto-update-plus)
+[![apm](https://flat.badgen.net/apm/dl/auto-update-plus)](https://atom.io/packages/auto-update-plus)
+[![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-auto-update-plus)](https://circleci.com/gh/idleberg/atom-auto-update-plus)
+[![David](https://flat.badgen.net/david/dep/idleberg/atom-auto-update-plus)](https://david-dm.org/idleberg/atom-auto-update-plus)
 
 Keeps your Atom packages up to date.
 
@@ -13,11 +13,14 @@ This package is a fork of [auto-update-packages](https://github.com/yujinakayama
 * OS-independent Atom notifications
 * localStorage for settings
 * inclusion/exclusion of specific packages
-* more to come!
+* update specific SemVer ranges
+* parallel updates
 
 ## Installation
 
-Install `auto-update-plus` from Atom's [Package Manager](http://flight-manual.atom.io/using-atom/sections/atom-packages/) or the command-line equivalent:
+### apm
+
+Install `auto-update-plus` from Atom [install view](atom://settings-view/show-package?package=auto-update-plus) or use the command-line equivalent:
 
 `$ apm install auto-update-plus`
 
@@ -25,11 +28,22 @@ Install `auto-update-plus` from Atom's [Package Manager](http://flight-manual.at
 
 Change to your Atom packages directory:
 
-```bash
-# Windows
+**Windows**
+
+```powershell
+# Powershell
+$ cd $Env:USERPROFILE\.atom\packages
+```
+
+```cmd
+:: Command Prompt
 $ cd %USERPROFILE%\.atom\packages
 
-# Linux & macOS
+```
+
+**Linux & macOS**
+
+```bash
 $ cd ~/.atom/packages/
 ```
 
@@ -39,10 +53,16 @@ Clone the repository as `auto-update-plus`:
 $ git clone https://github.com/idleberg/atom-auto-update-plus auto-update-plus
 ```
 
+Install dependencies:
+
+```bash
+cd auto-update-plus && npm install
+```
+
 ## Usage
 
-This package automatically checks for package updates every 6 hours by default. If any updates are available, it installs them and notifies you. You can force an update from the Packages menu or the command palette.
+As the name implies, this package runs automatically in the background. You can tweak its default behaviour in the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings).
 
 ## License
 
-This work is licensed under the [The MIT License](LICENSE.md).
+This work is licensed under the [MIT License](LICENSE)
