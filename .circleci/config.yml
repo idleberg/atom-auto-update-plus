@@ -1,0 +1,43 @@
+version: 2.1
+
+commands:
+  run-test:
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore npm Package Data Cache
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Installing Node packages
+          command: npm ci
+      - save_cache:
+          name: Cache npm Package Data
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: Linting Source
+          command: npm run lint
+      - run:
+          name: Running Tests
+          command: npm run test
+
+jobs:
+  node-latest:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run-test
+
+  node-lts:
+    docker:
+      - image: circleci/node:lts
+    steps:
+      - run-test
+
+workflows:
+  node-run-tests:
+    jobs:
+    - node-latest
+    - node-lts
+  version: 2
