@@ -1,7 +1,7 @@
 {
   "name": "auto-update-plus",
   "version": "0.6.0",
-  "description": "Keep your Atom packages up to date.",
+  "description": "Keeps your Atom packages up to date",
   "license": "MIT",
   "contributors": [
     {
