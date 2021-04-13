@@ -11,10 +11,10 @@ Keeps your Atom packages up to date.
 This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
 
 * OS-independent Atom notifications
-* localStorage for settings
 * inclusion/exclusion of specific packages
-* update specific SemVer ranges
-* parallel updates
+* updates specific SemVer ranges
+* runs updates in parallel
+* uses localStorage for settings
 
 ## Installation
 
