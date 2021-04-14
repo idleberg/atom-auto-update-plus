@@ -150,8 +150,10 @@ async function getOutdatedPackages(): Promise<string[]> {
   const { includedPackages, excludedPackages } = getConfig();
 
   if (includedPackages.length) {
+    Logger.log(`Including packages for update: ${generateEnumerationExpression(includedPackages)}`)
     outdatedPackages = outdatedPackages.filter(item => includedPackages.includes(item.name));
   } else if (excludedPackages.length) {
+    Logger.log(`Excluding packages from update: ${generateEnumerationExpression(excludedPackages)}`)
     outdatedPackages = outdatedPackages.filter(item => !excludedPackages.includes(item.name));
   }
 
