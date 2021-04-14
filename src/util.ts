@@ -106,7 +106,7 @@ function notifyUser(packageNames) {
 }
 
 function generateEnumerationExpression(items: string[]): string {
-  let expression = "";
+  let expression = '';
   const result = [];
 
   for (let index = 0; index < items.length; index++) {
@@ -114,7 +114,7 @@ function generateEnumerationExpression(items: string[]): string {
 
     if (index > 0) {
       expression += (index + 1) < items.length
-        ? ", "
+        ? ', '
         : ' and ';
     }
 

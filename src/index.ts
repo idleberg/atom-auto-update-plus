@@ -1,8 +1,8 @@
 import meta from '../package.json';
-import { CompositeDisposable } from "atom";
-import { configSchema, getConfig, migrateConfig, unsetConfig } from "./config";
-import { initUpdate, hideStatusBar, observeConflictingSettings } from "./util";
-import Logger from "./log";
+import { CompositeDisposable } from 'atom';
+import { configSchema, getConfig, migrateConfig, unsetConfig } from './config';
+import { initUpdate, hideStatusBar, observeConflictingSettings } from './util';
+import Logger from './log';
 
 const PackageControl = {
   config: configSchema,
