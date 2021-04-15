@@ -11,10 +11,6 @@ const PackageControl = {
   activate(): void {
     Logger.log('Activating package');
 
-    const config = getConfig();
-
-    if (config.hideUpdateStatusView) hideStatusBar(true);
-
     this.subscriptions.add(
       atom.config.observe(`${meta.name}.includedPackages`, observeConflictingSettings),
       atom.config.observe(`${meta.name}.excludedPackages`, observeConflictingSettings),
@@ -25,6 +21,7 @@ const PackageControl = {
     this.migrate();
 
     // Defer
+    const config = getConfig();
     Logger.log(`Defering initialization by ${config.deferInitialization} seconds`);
 
     setTimeout(async () => {
