@@ -4,7 +4,7 @@ import { configSchema, getConfig, migrateConfig, unsetConfig } from './config';
 import { initUpdate, hideStatusBar, observeConflictingSettings } from './util';
 import Logger from './log';
 
-const PackageControl = {
+const AutoUpdatePlus = {
   config: configSchema,
   subscriptions: new CompositeDisposable(),
 
@@ -43,4 +43,4 @@ const PackageControl = {
   }
 };
 
-export default PackageControl;
+export default AutoUpdatePlus;
