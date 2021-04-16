@@ -1,5 +1,5 @@
 import { ConfigValues } from 'atom';
-import meta from '../package.json';
+import { name }from '../package.json';
 import Logger from './log';
 
 const TIME = {
@@ -111,18 +111,18 @@ const configSchema = {
 
 function getConfig(key = ''): ConfigValues {
   return key?.length
-    ? atom.config.get(`${meta.name}.${key}`)
-    : atom.config.get(`${meta.name}`);
+    ? atom.config.get(`${name}.${key}`)
+    : atom.config.get(`${name}`);
 }
 
 function migrateConfig(oldKey: string, newKey: string): void {
-  if (atom.config.get(`${meta.name}.${newKey}`)) {
-    Logger.warn(`Setting '${newKey}' already exists, skipping migration`);
+  if (!atom.config.get(`${name}.${oldKey}`) || atom.config.get(`${name}.${newKey}`)) {
+    Logger.warn(`The configuration setting '${newKey}' already exists, skipping migration`);
     return;
   }
 
   try {
-    atom.config.set(`${meta.name}.${newKey}`, atom.config.get(`${meta.name}.${oldKey}`));
+    atom.config.set(`${name}.${newKey}`, atom.config.get(`${name}.${oldKey}`));
   } catch (error) {
     console.log(error);
     atom.notifications.addWarning(`Failed to migrate configuration, see console for details`);
@@ -130,14 +130,14 @@ function migrateConfig(oldKey: string, newKey: string): void {
     return;
   }
 
-  Logger.warn(`Setting '${oldKey}' migrated successfully to '${newKey}'`);
-  atom.config.unset(`${meta.name}.${oldKey}`);
+  Logger.warn(`The configuration setting '${oldKey}' was migrated successfully to '${newKey}'`);
+  atom.config.unset(`${name}.${oldKey}`);
 }
 
 function unsetConfig(key = ''): void {
   key?.length
-    ? atom.config.unset(`${meta.name}.${key}`)
-    : atom.config.unset(`${meta.name}`);
+    ? atom.config.unset(`${name}.${key}`)
+    : atom.config.unset(`${name}`);
 }
 
 export {
