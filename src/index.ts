@@ -22,7 +22,7 @@ const AutoUpdatePlus = {
 
     // Defer
     const config = getConfig();
-    Logger.log(`Defering initialization by ${config.deferInitialization} seconds`);
+    Logger.log(`Defering action by ${config.deferInitialization} seconds`);
 
     setTimeout(async () => {
       await initUpdate();

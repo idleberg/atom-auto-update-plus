@@ -64,7 +64,6 @@ function updateIsDue(): boolean {
   }
 
   return true;
-
 }
 
 async function updatePackage(packageName: string): Promise<string> {
