@@ -124,7 +124,7 @@ function migrateConfig(oldKey: string, newKey: string): void {
   try {
     atom.config.set(`${name}.${newKey}`, atom.config.get(`${name}.${oldKey}`));
   } catch (error) {
-    console.log(error);
+    Logger.error(error);
     atom.notifications.addWarning(`Failed to migrate configuration, see console for details`);
 
     return;
@@ -135,9 +135,12 @@ function migrateConfig(oldKey: string, newKey: string): void {
 }
 
 function unsetConfig(key = ''): void {
-  key?.length
-    ? atom.config.unset(`${name}.${key}`)
-    : atom.config.unset(`${name}`);
+  const unsetKey = key?.length
+    ? `${name}.${key}`
+    : name;
+
+    Logger.log(`Unsetting configuration setting '${unsetKey}`);
+    atom.config.unset(unsetKey);
 }
 
 export {
