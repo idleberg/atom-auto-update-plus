@@ -85,6 +85,6 @@
   "lint-staged": {
     "*.ts": "eslint --cache --fix",
     "*.json": "jsonlint --quiet",
-    "*.{ts,md,yml}": "prettierx --write"
+    "*.{md,yml}": "prettierx --write"
   }
 }
