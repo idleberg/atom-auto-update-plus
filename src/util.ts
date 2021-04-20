@@ -99,8 +99,28 @@ function notifyUser(packageNames) {
 
   message.push(generateEnumerationExpression(spelledOutPackages));
 
-  atom.notifications.addSuccess(message.join(' '), {
-    dismissable: !notifications.dismissNotification
+  const notification = atom.notifications.addSuccess(message.join(' '), {
+    dismissable: !notifications.dismissNotification,
+    buttons: !notifications.dismissNotification && [
+      {
+        text: 'Restart',
+        async onDidClick() {
+          notification.dismiss();
+
+          await atom.restartApplication();
+
+          return;
+        }
+      },
+      {
+        text: 'Cancel',
+        onDidClick() {
+          notification.dismiss();
+
+          return;
+        }
+      }
+    ]
   });
 }
 
