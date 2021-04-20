@@ -7,6 +7,7 @@ yarn.lock
 
 # Development
 .eslintcache
+*.map
 .rollup.cache/
 .stylelintcache
 .yo-rc.json
