@@ -37,6 +37,7 @@ async function initUpdate(): Promise<void> {
     return;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const updatedPackages = await (Promise as any).allSettled(outdatedPackages.map(async packageName => await updatePackage(packageName)));
 
   notifyUser(updatedPackages.filter(item => item).map(item => item.value));
