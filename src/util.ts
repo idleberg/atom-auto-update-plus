@@ -43,6 +43,7 @@ async function prepareUpdate(forceUpdate = false): Promise<void> {
 
   if (!outdatedPackages.length) {
     Logger.log('No outdated packages found');
+    setLastUpdate();
     Signal.remove(message);
     return;
   }
@@ -58,25 +59,31 @@ async function prepareUpdate(forceUpdate = false): Promise<void> {
 }
 
 function getLastUpdate(): number {
-  const lastUpdateTime = localStorage.getItem(`${meta.name}.lastUpdateTime`) || 0;
+  const lastUpdateTime = localStorage.getItem(`${meta.name}.lastUpdateTime`);
 
-  return Math.floor(new Date(lastUpdateTime).getTime() / 1000);
+  return lastUpdateTime
+    ? Math.floor(new Date(lastUpdateTime).getTime() / 1000)
+    : 0;
 }
 
 function setLastUpdate(): void {
-  localStorage.setItem(`${meta.name}.lastUpdateTime`, new Date().toISOString());
+  const now = new Date().toISOString();
+  Logger.log('Setting lastUpdateTime to', now);
+  localStorage.setItem(`${meta.name}.lastUpdateTime`, now);
 }
 
 function updateIsDue(): boolean {
   const now = Math.floor(new Date().getTime() / 1000);
   const lastUpdate = getLastUpdate();
-  const intervalMinutes = Number(getConfig('intervalMinutes'));
+  const intervalSeconds = Number(getConfig('updateInterval')) * 60;
+  const lastUpdateInterval = now - lastUpdate;
 
-  if (intervalMinutes * 60 >= now - lastUpdate) {
-    Logger.log(`The next update is due in ${Math.round((intervalMinutes * 60 - (now - lastUpdate)) / 60)} minutes`);
+  if (intervalSeconds >= lastUpdateInterval) {
+    Logger.log(`The next update is due in ${Math.round((intervalSeconds - lastUpdateInterval) / 60)} minutes`);
     return false;
   }
 
+  Logger.log('The next update is due now');
   return true;
 }
 
@@ -213,5 +220,6 @@ export {
   hideStatusBar,
   getOutdatedPackages,
   observeConflictingSettings,
-  prepareUpdate
+  prepareUpdate,
+  updateIsDue
 };

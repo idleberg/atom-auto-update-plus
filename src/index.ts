@@ -1,12 +1,13 @@
 import meta from '../package.json';
 import { CompositeDisposable } from 'atom';
 import { configSchema, getConfig, migrateConfig, unsetConfig } from './config';
-import { prepareUpdate, hideStatusBar, observeConflictingSettings } from './util';
+import { prepareUpdate, hideStatusBar, observeConflictingSettings, updateIsDue } from './util';
 import Logger from './log';
 import Signal from './busy-signal';
 
 const AutoUpdatePlus = {
   config: configSchema,
+  configSubscription: null,
   subscriptions: new CompositeDisposable(),
   updateInterval: null,
 
@@ -42,18 +43,19 @@ const AutoUpdatePlus = {
     migrateConfig('dismissNotification', 'notifications.dismissNotification');
     migrateConfig('maximumPackageDetail', 'notifications.maximumPackageDetail');
     migrateConfig('updateNotification', 'notifications.notifyOnUpdate');
+    migrateConfig('intervalMinutes', 'updateInterval');
     unsetConfig('notificationStyle');
   },
 
   enableUpdateInterval(): void {
-    const intervalMinutes = Number(getConfig('intervalMinutes'));
-    Logger.log(`Setting interval to ${intervalMinutes} ${intervalMinutes === 1 ? 'minute' : 'minutes'}`);
+    const pollingInterval = getConfig('pollingInterval');
+    Logger.log(`Setting polling interval to ${pollingInterval} seconds`);
 
     this.updateInterval = setInterval(async () => {
       await prepareUpdate();
-    }, intervalMinutes * 60 * 1000);
+    }, Number(pollingInterval) * 1000);
 
-    this.configSubscription = atom.config.onDidChange(`${meta.name}.intervalMinutes`, ({newValue})=> {
+    this.configSubscription = atom.config.onDidChange(`${meta.name}.updateInterval`, ({newValue})=> {
       Logger.log(`Changed update interval to ${newValue} minutes`, newValue);
 
       this.disableUpdateInterval();

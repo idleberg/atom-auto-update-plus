@@ -2,8 +2,10 @@ import { ConfigValues } from 'atom';
 import { name }from '../package.json';
 import Logger from './log';
 
-const TIME = {
+const TIME_IN_MINUTES = {
   six_hours: 360,
+  one_minute: 1,
+  five_minutes: 5,
   fifteen_minutes: 15,
   one_week: 10080
 };
@@ -52,14 +54,23 @@ const configSchema = {
     ],
     order: 2
   },
-  intervalMinutes: {
+  updateInterval: {
     title: 'Update Interval',
-    description: 'Set the default update interval, in minutes',
+    description: 'Set the default interval between updates, in minutes',
     type: 'integer',
-    minimum: atom.inDevMode() ? 1 : TIME.fifteen_minutes,
-    maximum: TIME.one_week,
-    default: TIME.six_hours,
+    minimum: atom.inDevMode() ? 1 : TIME_IN_MINUTES.fifteen_minutes,
+    maximum: TIME_IN_MINUTES.one_week,
+    default: TIME_IN_MINUTES.six_hours,
     order: 3
+  },
+  pollingInterval: {
+    title: 'Polling Interval',
+    description: 'Set the polling interval for update checks, in minutes',
+    type: 'integer',
+    minimum: TIME_IN_MINUTES.one_minute,
+    maximum: TIME_IN_MINUTES.five_minutes,
+    default: TIME_IN_MINUTES.one_minute,
+    order: 4
   },
   deferInitialization: {
     title: 'Defer Initialization',
@@ -68,19 +79,19 @@ const configSchema = {
     minimum: atom.inDevMode() ? 1 : 5,
     maximum: 120,
     default: 10,
-    order: 3
+    order: 5
   },
   hideUpdateStatusView: {
     title: 'Hide Update Status',
     description: 'Hides Atom\'s default update indicator in the status bar',
     type: 'boolean',
     default: false,
-    order: 4,
+    order: 6,
   },
   notifications: {
     title: 'Notifications',
     type: 'object',
-    order: 5,
+    order: 7,
     properties: {
       notifyOnUpdate: {
         title: 'Notify on Update',
