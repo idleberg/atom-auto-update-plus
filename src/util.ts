@@ -1,8 +1,9 @@
+import { getConfig } from './config';
 import execa from 'execa';
 import Logger from './log';
-import semverDiff from 'semver-diff';
-import { getConfig } from './config';
 import meta from '../package.json';
+import semverDiff from 'semver-diff';
+import Signal from './busy-signal';
 
 function hideStatusBar(state: boolean): void {
   Logger.log(state ? 'Hiding update indicator' : 'Showing update indicator');
@@ -23,17 +24,22 @@ function hideStatusBar(state: boolean): void {
 async function prepareUpdate(): Promise<void> {
   if (!updateIsDue()) return;
 
+  const message = 'Checking for updates';
+  Signal.add(message);
+
   let outdatedPackages;
 
   try {
     outdatedPackages = await getOutdatedPackages();
   } catch (err) {
+    Signal.remove(message);
     atom.notifications.addError('Could not retrieve outdated packages, see the console for details');
     return;
   }
 
   if (!outdatedPackages.length) {
     Logger.log('No outdated packages found');
+    Signal.remove(message);
     return;
   }
 
@@ -44,6 +50,7 @@ async function prepareUpdate(): Promise<void> {
 
   notifyUser(updatedPackages.filter(item => item).map(item => item.value));
   setLastUpdate();
+  Signal.remove(message);
 }
 
 function getLastUpdate(): number {

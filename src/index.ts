@@ -3,6 +3,7 @@ import { CompositeDisposable } from 'atom';
 import { configSchema, getConfig, migrateConfig, unsetConfig } from './config';
 import { prepareUpdate, hideStatusBar, observeConflictingSettings } from './util';
 import Logger from './log';
+import Signal from './busy-signal';
 
 const AutoUpdatePlus = {
   config: configSchema,
@@ -70,6 +71,12 @@ const AutoUpdatePlus = {
     }
 
     this.updateInterval = null;
+  },
+
+  consumeSignal(registry: unknown): void {
+    Logger.log('Consuming Busy Signal service');
+
+    Signal.consumer(registry);
   },
 
   deactivate(): void {
