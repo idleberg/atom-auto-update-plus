@@ -73,7 +73,7 @@ function updateIsDue(): boolean {
   const intervalMinutes = Number(getConfig('intervalMinutes'));
 
   if (intervalMinutes * 60 >= now - lastUpdate) {
-    Logger.log(`Skipping update, will try again in ${Math.round((intervalMinutes * 60 - (now - lastUpdate)) / 60)} minutes`);
+    Logger.log(`The next update is due in ${Math.round((intervalMinutes * 60 - (now - lastUpdate)) / 60)} minutes`);
     return false;
   }
 
