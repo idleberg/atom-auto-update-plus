@@ -12,7 +12,7 @@ This package is a fork of [auto-update-packages](https://github.com/yujinakayama
 
 - OS-independent Atom notifications
 - inclusion/exclusion of specific packages
-- updates specific SemVer ranges
+- updates specific [SemVer][sem-ver] ranges
 - runs updates in parallel
 - uses localStorage for settings
 
@@ -68,3 +68,4 @@ This work is licensed under the [MIT License](LICENSE)
 
 [command-palette]: https://flight-manual.atom.io/getting-started/sections/atom-basics/#command-palette
 [package-settings]: https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings
+[sem-ver]: https://semver.org/
