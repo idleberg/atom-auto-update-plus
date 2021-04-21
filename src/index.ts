@@ -7,7 +7,6 @@ import Signal from './busy-signal';
 
 const AutoUpdatePlus = {
   config: configSchema,
-  configSubscription: null,
   subscriptions: new CompositeDisposable(),
   updateInterval: null,
 
@@ -22,7 +21,9 @@ const AutoUpdatePlus = {
       }),
       atom.config.observe(`${meta.name}.includedPackages`, observeConflictingSettings),
       atom.config.observe(`${meta.name}.excludedPackages`, observeConflictingSettings),
-      atom.config.observe(`${meta.name}.hideUpdateStatusView`, hideStatusBar)
+      atom.config.observe(`${meta.name}.hideUpdateStatusView`, hideStatusBar),
+      atom.config.onDidChange(`${meta.name}.updateInterval`, ({newValue}) => this.changeInterval('update', newValue)),
+      atom.config.onDidChange(`${meta.name}.pollingInterval`, ({newValue}) => this.changeInterval('polling', newValue)),
     );
 
     // Migrate from v0.5
@@ -48,31 +49,28 @@ const AutoUpdatePlus = {
   },
 
   enableUpdateInterval(): void {
-    const pollingInterval = getConfig('pollingInterval');
-    Logger.log(`Setting polling interval to ${pollingInterval} seconds`);
+    const pollingInterval = Number(getConfig('pollingInterval'));
+    Logger.log(`Setting polling interval to ${pollingInterval} ${pollingInterval === 1 ? 'minute' : 'minutes'}`);
 
     this.updateInterval = setInterval(async () => {
       await prepareUpdate();
-    }, Number(pollingInterval) * 1000);
-
-    this.configSubscription = atom.config.onDidChange(`${meta.name}.updateInterval`, ({newValue})=> {
-      Logger.log(`Changed update interval to ${newValue} minutes`, newValue);
-
-      this.disableUpdateInterval();
-      this.enableUpdateInterval();
-    });
+    }, pollingInterval * 60 * 1000);
   },
 
-  disableUpdateInterval(): void{
-    this.configSubscription?.dispose();
-    this.configSubscription = null;
-
+  clearUpdateInterval(): void {
     if (this.updateInterval) {
       Logger.log('Clearing interval');
       clearInterval(this.updateInterval);
     }
 
     this.updateInterval = null;
+  },
+
+  changeInterval(type: string, newValue: number): void {
+    Logger.log(`Changed ${type} interval to ${newValue} minutes`);
+
+    this.clearUpdateInterval();
+    this.enableUpdateInterval();
   },
 
   consumeSignal(registry: unknown): void {
