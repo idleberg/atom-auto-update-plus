@@ -38,6 +38,11 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
+  "activationCommands": {
+    "atom-workspace": [
+      "auto-update-plus:update-now"
+    ]
+  },
   "activationHooks": [
     "core:loaded-shell-environment"
   ],
