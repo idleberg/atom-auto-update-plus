@@ -10,11 +10,11 @@ Keeps your Atom packages up to date.
 
 This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
 
-* OS-independent Atom notifications
-* inclusion/exclusion of specific packages
-* updates specific SemVer ranges
-* runs updates in parallel
-* uses localStorage for settings
+- OS-independent Atom notifications
+- inclusion/exclusion of specific packages
+- updates specific SemVer ranges
+- runs updates in parallel
+- uses localStorage for settings
 
 ## Installation
 
@@ -60,7 +60,7 @@ cd auto-update-plus && npm install
 
 ## Usage
 
-As the name implies, this package runs automatically in the background. You can tweak its default behaviour in the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings).
+As the name implies, this package runs automatically in the background. However, you can force the update check by running _Auto Update Plus: Update Now_ from the command palette. You can tweak its default behaviour in the [package settings](https://flight-manual.atom.io/using-atom/sections/atom-packages/#package-settings).
 
 ## License
 
