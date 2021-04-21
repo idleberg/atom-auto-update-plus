@@ -56,7 +56,7 @@ const configSchema = {
     title: 'Update Interval',
     description: 'Set the default update interval, in minutes',
     type: 'integer',
-    minimum: TIME.fifteen_minutes,
+    minimum: atom.inDevMode() ? 1 : TIME.fifteen_minutes,
     maximum: TIME.one_week,
     default: TIME.six_hours,
     order: 3
@@ -65,7 +65,7 @@ const configSchema = {
     title: 'Defer Initialization',
     description: 'Set the default timeout for update initialization, in seconds',
     type: 'integer',
-    minimum: 5,
+    minimum: atom.inDevMode() ? 1 : 5,
     maximum: 120,
     default: 10,
     order: 3
