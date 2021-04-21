@@ -6,7 +6,9 @@ commands:
       - checkout
       - restore_cache:
           name: Restore npm Package Data Cache
-          key: dependency-cache-{{ checksum "package-lock.json" }}
+          keys:
+            - dependency-cache-{{ checksum "package-lock.json" }}
+            - dependency-cache-
       - run:
           name: Installing Node packages
           command: npm ci
