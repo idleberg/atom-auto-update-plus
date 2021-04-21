@@ -20,7 +20,7 @@ function hideStatusBar(state: boolean): void {
   `;
 }
 
-async function initUpdate(): Promise<void> {
+async function prepareUpdate(): Promise<void> {
   if (!updateIsDue()) return;
 
   let outdatedPackages;
@@ -38,7 +38,9 @@ async function initUpdate(): Promise<void> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const updatedPackages = await (Promise as any).allSettled(outdatedPackages.map(async packageName => await updatePackage(packageName)));
+  const updatedPackages = await (Promise as any).allSettled(
+    outdatedPackages.map(async packageName => await updatePackage(packageName))
+  );
 
   notifyUser(updatedPackages.filter(item => item).map(item => item.value));
   setLastUpdate();
@@ -198,7 +200,7 @@ function observeConflictingSettings(): void {
 
 export {
   hideStatusBar,
-  initUpdate,
   getOutdatedPackages,
-  observeConflictingSettings
+  observeConflictingSettings,
+  prepareUpdate
 };
