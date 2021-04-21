@@ -16,7 +16,7 @@ const AutoUpdatePlus = {
     this.subscriptions.add(
       atom.commands.add("atom-workspace", {
         'auto-update-plus:update-now': async () => {
-          await prepareUpdate();
+          await prepareUpdate(true);
         }
       }),
       atom.config.observe(`${meta.name}.includedPackages`, observeConflictingSettings),

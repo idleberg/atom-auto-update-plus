@@ -25,8 +25,8 @@ function hideStatusBar(state: boolean): void {
   `;
 }
 
-async function prepareUpdate(): Promise<void> {
-  if (!updateIsDue()) return;
+async function prepareUpdate(forceUpdate = false): Promise<void> {
+  if (!forceUpdate && !updateIsDue()) return;
 
   const message = 'Checking for updates';
   Signal.add(message);
