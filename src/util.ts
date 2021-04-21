@@ -5,6 +5,10 @@ import meta from '../package.json';
 import semverDiff from 'semver-diff';
 import Signal from './busy-signal';
 
+const execaOptions = {
+  timeout: 5 * 1000 * 60
+};
+
 function hideStatusBar(state: boolean): void {
   Logger.log(state ? 'Hiding update indicator' : 'Showing update indicator');
 
@@ -81,7 +85,7 @@ async function updatePackage(packageName: string): Promise<string> {
 
   try {
     Logger.log(`Updating '${packageName}'`);
-    await execa(apmPath, ['update', packageName, '--no-confirm']);
+    await execa(apmPath, ['update', packageName, '--no-confirm'], execaOptions);
   } catch (err) {
     const errorMessage = `Failed to install '${packageName}'`;
     Logger.error(errorMessage);
@@ -160,7 +164,7 @@ async function getOutdatedPackages(): Promise<string[]> {
   let response;
 
   try {
-    response = await execa(apmPath, ['update', '--compatible', '--json', '--list']);
+    response = await execa(apmPath, ['update', '--compatible', '--json', '--list'], execaOptions);
   } catch (err) {
     throw Error(err.message);
   }
