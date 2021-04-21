@@ -52,8 +52,8 @@ const AutoUpdatePlus = {
       await prepareUpdate();
     }, intervalMinutes * 60 * 1000);
 
-    this.configSubscription = atom.config.onDidChange(`${meta.name}.intervalMinutes`, newValue=> {
-      Logger.log(`Changed update interval to ${newValue} minutes`);
+    this.configSubscription = atom.config.onDidChange(`${meta.name}.intervalMinutes`, ({newValue})=> {
+      Logger.log(`Changed update interval to ${newValue} minutes`, newValue);
 
       this.disableUpdateInterval();
       this.enableUpdateInterval();
