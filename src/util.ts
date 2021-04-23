@@ -91,7 +91,7 @@ async function updatePackage(packageName: string): Promise<string> {
   const apmPath = atom.packages.getApmPath();
 
   try {
-    Logger.log(`Updating '${packageName}'`);
+    Logger.log(`Updating '${packageName}'${packageName === meta.name && ', hey that\'s me!'}`);
     await execa(apmPath, ['update', packageName, '--no-confirm'], execaOptions);
   } catch (err) {
     const errorMessage = `Failed to install '${packageName}'`;
