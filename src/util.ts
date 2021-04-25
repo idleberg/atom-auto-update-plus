@@ -5,6 +5,9 @@ import meta from '../package.json';
 import semverDiff from 'semver-diff';
 import Signal from './busy-signal';
 
+// TODO: Remove in future version
+import 'core-js/modules/es.promise.all-settled'
+
 const execaOptions = {
   timeout: 5 * 1000 * 60
 };
