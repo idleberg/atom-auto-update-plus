@@ -1,0 +1,18 @@
+{
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Auto Update Plus",
+          "submenu": [
+            {
+              "command": "auto-update-plus:update-now",
+              "label": "Update Now"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
