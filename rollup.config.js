@@ -6,6 +6,8 @@ import json from '@rollup/plugin-json';
 import scss from 'rollup-plugin-scss'
 import typescript from '@rollup/plugin-typescript';
 
+const production = !process.env.ROLLUP_WATCH;
+
 const plugins = [
   babel({
     extensions: ['.cjs', '.js', '.jsx', '.mjs', '.ts', '.tsx'],
@@ -16,11 +18,7 @@ const plugins = [
   nodeResolve({
     preferBuiltins: true
   }),
-  (
-    process.env.ROLLUP_WATCH
-      ? undefined
-      : terser()
-  ),
+  production && terser(),
   scss({
     output: false
   }),
@@ -38,7 +36,7 @@ export default [
       dir: 'lib',
       exports: 'default',
       format: 'cjs',
-      sourcemap: true
+      sourcemap: production ? false : true
     },
     external: [
       // Atom
