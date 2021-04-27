@@ -1,12 +1,12 @@
 # auto-update-plus
 
+> Keeps your Atom packages up to date.
+
 [![apm](https://flat.badgen.net/apm/license/auto-update-plus)](https://atom.io/packages/auto-update-plus)
 [![apm](https://flat.badgen.net/apm/v/auto-update-plus)](https://atom.io/packages/auto-update-plus)
 [![apm](https://flat.badgen.net/apm/dl/auto-update-plus)](https://atom.io/packages/auto-update-plus)
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-auto-update-plus)](https://circleci.com/gh/idleberg/atom-auto-update-plus)
 [![David](https://flat.badgen.net/david/dep/idleberg/atom-auto-update-plus)](https://david-dm.org/idleberg/atom-auto-update-plus)
-
-Keeps your Atom packages up to date.
 
 This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
 
