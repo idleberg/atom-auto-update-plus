@@ -14,7 +14,6 @@ This package is a fork of [auto-update-packages](https://github.com/yujinakayama
 - inclusion/exclusion of specific packages
 - updates specific [SemVer][sem-ver] ranges
 - runs updates in parallel
-- uses localStorage for settings
 
 ## Installation
 
