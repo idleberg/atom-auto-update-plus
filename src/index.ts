@@ -50,7 +50,7 @@ const AutoUpdatePlus = {
 
   enableUpdateInterval(): void {
     const pollingInterval = Number(getConfig('pollingInterval'));
-    Logger.log(`Setting polling interval to ${pollingInterval} ${pollingInterval === 1 ? 'minute' : 'minutes'}`);
+    Logger.log(`Setting new polling interval to ${pollingInterval} ${pollingInterval === 1 ? 'minute' : 'minutes'}`);
 
     this.updateInterval = setInterval(async () => {
       await prepareUpdate();
@@ -59,7 +59,7 @@ const AutoUpdatePlus = {
 
   clearUpdateInterval(): void {
     if (this.updateInterval) {
-      Logger.log('Clearing interval');
+      Logger.log('Clearing polling interval');
       clearInterval(this.updateInterval);
     }
 
