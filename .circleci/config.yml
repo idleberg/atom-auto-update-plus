@@ -28,9 +28,9 @@ commands:
           command: npm run build
 
 jobs:
-  node-latest:
+  node-current:
     docker:
-      - image: cimg/node:latest
+      - image: cimg/node:current
     steps:
       - run-test
 
@@ -43,6 +43,6 @@ jobs:
 workflows:
   node-run-tests:
     jobs:
-      - node-latest
+      - node-current
       - node-lts
   version: 2
