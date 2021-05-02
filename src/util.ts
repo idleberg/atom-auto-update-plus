@@ -153,7 +153,7 @@ function generateEnumerationExpression(items: string[]): string {
     return items[0];
   }
 
-  const lastItem = items.splice(1, 1);
+  const lastItem = items.splice(-1, 1);
 
   let output = items.join(', ');
   output += ` and ${lastItem}`;
