@@ -13,7 +13,7 @@ This package is a fork of [auto-update-packages](https://github.com/yujinakayama
 - OS-independent Atom notifications
 - inclusion/exclusion of specific packages
 - updates specific [SemVer][sem-ver] ranges
-- runs updates in concurrently
+- runs updates concurrently
 
 ## Installation
 
