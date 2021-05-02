@@ -149,22 +149,16 @@ function notifyUser(packageNames) {
 }
 
 function generateEnumerationExpression(items: string[]): string {
-  let expression = '';
-  const result = [];
-
-  for (let index = 0; index < items.length; index++) {
-    const item = items[index];
-
-    if (index > 0) {
-      expression += (index + 1) < items.length
-        ? ', '
-        : ' and ';
-    }
-
-    result.push(expression += item);
+  if (items.length === 1) {
+    return items[0];
   }
 
-  return expression;
+  const lastItem = items.splice(1, 1);
+
+  let output = items.join(', ');
+  output += ` and ${lastItem}`;
+
+  return output;
 }
 
 async function getOutdatedPackages(): Promise<string[]> {
