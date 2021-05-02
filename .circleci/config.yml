@@ -21,9 +21,6 @@ commands:
           name: Linting Source
           command: npm run lint
       - run:
-          name: Running Tests
-          command: npm run test
-      - run:
           name: Building Source
           command: npm run build
 
