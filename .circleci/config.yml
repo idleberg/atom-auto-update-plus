@@ -30,13 +30,13 @@ commands:
 jobs:
   node-latest:
     docker:
-      - image: circleci/node:latest
+      - image: cimg/node:latest
     steps:
       - run-test
 
   node-lts:
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
     steps:
       - run-test
 
