@@ -1,7 +1,7 @@
 import meta from '../package.json';
 import { CompositeDisposable } from 'atom';
 import { configSchema, getConfig, migrateConfig, unsetConfig } from './config';
-import { prepareUpdate, hideStatusBar, observeConflictingSettings, updateIsDue } from './util';
+import { prepareUpdate, hideStatusBar, observeConflictingSettings } from './util';
 import Logger from './log';
 import Signal from './busy-signal';
 
