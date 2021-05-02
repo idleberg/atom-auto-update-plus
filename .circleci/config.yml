@@ -7,14 +7,14 @@ commands:
       - restore_cache:
           name: Restore npm Package Data Cache
           keys:
-            - dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package-lock.json" }}
-            - dependency-cache-
+            - v1-dependency-cache-{{ checksum "package-lock.json" }}-{{ .Environment.CIRCLE_JOB }}
+            - v1-dependency-cache-
       - run:
           name: Installing Node packages
           command: npm ci
       - save_cache:
           name: Cache npm Package Data
-          key: dependency-cache-{{ .Environment.CIRCLE_JOB }}-{{ checksum "package-lock.json" }}
+          key: v1-dependency-cache-{{ checksum "package-lock.json" }}-{{ .Environment.CIRCLE_JOB }}
           paths:
             - ./node_modules
       - run:
