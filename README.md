@@ -8,7 +8,7 @@
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-auto-update-plus)](https://circleci.com/gh/idleberg/atom-auto-update-plus)
 [![David](https://flat.badgen.net/david/dep/idleberg/atom-auto-update-plus)](https://david-dm.org/idleberg/atom-auto-update-plus)
 
-This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), the key differences are the following:
+This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), but differing in some key-aspects:
 
 - OS-independent Atom notifications
 - inclusion/exclusion of specific packages
