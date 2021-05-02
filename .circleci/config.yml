@@ -31,16 +31,16 @@ jobs:
   node-latest:
     docker:
       - image: circleci/node:latest
-        environment:
-          NODE_IMAGE: latest
+    environment:
+      NODE_IMAGE: latest
     steps:
       - run-test
 
   node-lts:
     docker:
       - image: circleci/node:lts
-        environment:
-          NODE_IMAGE: lts
+    environment:
+      NODE_IMAGE: lts
     steps:
       - run-test
 
