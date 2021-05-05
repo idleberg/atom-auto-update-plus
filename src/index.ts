@@ -58,8 +58,9 @@ const AutoUpdatePlus = {
   },
 
   clearUpdateInterval(): void {
+    Logger.log('Clearing polling interval');
+
     if (this.updateInterval) {
-      Logger.log('Clearing polling interval');
       clearInterval(this.updateInterval);
     }
 
