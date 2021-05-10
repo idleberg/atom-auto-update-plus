@@ -27,7 +27,7 @@ const configSchema = {
   },
   versionRange: {
     title: 'Version Range',
-    description: 'Specify a [SemVer](https://semver.org/) range that update automatically',
+    description: 'Specify a [SemVer](https://semver.org/) range that updates automatically',
     type: 'array',
     default: ['major', 'minor', 'patch'],
     enum: [
