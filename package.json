@@ -58,13 +58,9 @@
       "name": "busy-signal"
     }
   ],
-  "dependencies": {
-    "@atxm/developer-console": "^0.5.0",
-    "atom-package-deps": "^7.2.3",
-    "execa": "^5.0.0",
-    "semver-diff": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@atxm/developer-console": "^0.5.0",
     "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.14.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.14.2",
@@ -73,18 +69,21 @@
     "@types/node": "^15.3.1",
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",
+    "atom-package-deps": "^7.2.3",
     "core-js": "^3.12.1",
     "cross-env": "^7.0.3",
     "esbuild": "^0.12.1",
-    "eslint": "^7.26.0",
     "eslint-config-eslint": "^7.0.0",
     "eslint-plugin-json": "^3.0.0",
+    "eslint": "^7.26.0",
+    "execa": "^5.0.0",
     "husky": ">=4.3 <5",
     "jsonlint": "^1.6.3",
     "lint-staged": "^11.0.0",
     "log-symbols": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prettierx": "^0.18.0",
+    "semver-diff": "^3.1.1",
     "source-map-explorer": "^2.5.2",
     "stylelint": "^13.13.1",
     "tslib": "^2.2.0",
