@@ -16,7 +16,7 @@ build({
   platform: 'node',
   sourcemap: true,
   watch: process.env.ESBUILD_WATCH && {
-    onRebuild(error, result) {
+    onRebuild(error) {
       if (error) {
         console.error(`${logSymbols.error} Build failed:`, error.errors.text);
       } else {
