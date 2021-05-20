@@ -6,7 +6,7 @@
 [![apm](https://flat.badgen.net/apm/v/auto-update-plus)](https://atom.io/packages/auto-update-plus)
 [![apm](https://flat.badgen.net/apm/dl/auto-update-plus)](https://atom.io/packages/auto-update-plus)
 [![CircleCI](https://flat.badgen.net/circleci/github/idleberg/atom-auto-update-plus)](https://circleci.com/gh/idleberg/atom-auto-update-plus)
-[![David](https://flat.badgen.net/david/dep/idleberg/atom-auto-update-plus)](https://david-dm.org/idleberg/atom-auto-update-plus)
+[![David](https://flat.badgen.net/david/dev/idleberg/atom-auto-update-plus)](https://david-dm.org/idleberg/atom-auto-update-plus?type=dev)
 
 This package is a fork of [auto-update-packages](https://github.com/yujinakayama/atom-auto-update-packages), but differing in some key-aspects:
 
