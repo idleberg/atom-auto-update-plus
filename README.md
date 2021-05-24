@@ -59,7 +59,7 @@ cd auto-update-plus && npm install
 
 ## Usage
 
-As the name implies, this package runs automatically in the background. However, you can force the update check by running _Auto Update Plus: Update Now_ from the [command palette][command-palette]. You can tweak its default behaviour in the [package settings](package-settings).
+As the name implies, this package runs automatically in the background. However, you can force the update check by running _Auto Update Plus: Update Now_ from the [command palette][command-palette]. You can tweak its default behaviour in the [package settings][package-settings].
 
 ## License
 
