@@ -99,7 +99,7 @@ async function updatePackage(packageName: string): Promise<string> {
   } catch (err) {
     const errorMessage = `Failed to install '${packageName}'`;
     Logger.error(errorMessage);
-    throw Error(errorMessage);
+    Promise.reject(Error(errorMessage));
   }
 
   return packageName;
