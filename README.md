@@ -61,7 +61,7 @@ cd auto-update-plus && npm install
 
 Just sit tight :sunglasses:
 
-As the name implies, this package runs automatically every 6 hours. If any updates are eligible, they will be installed in the background and you will be notified about installed updates.
+As the name implies, this package runs _automatically_ every 6 hours. If any updates are eligible, they will be installed in the background and you will be notified about installed updates.
 
 All of the defaults can be tweaked in the [package settings][package-settings].
 
