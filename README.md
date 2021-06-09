@@ -63,7 +63,7 @@ Just sit tight :sunglasses:
 
 As the name implies, this package runs _automatically_ every 6 hours. If any updates are available, they will be installed in the background and you will be notified about successful updates.
 
-All of the defaults can be tweaked in the [package settings][package-settings].
+All of the defaults, such as update intervals or notificaiton messages, can be tweaked in the [package settings][package-settings]. Furthermore, you include or exclude specific packages from updating, or define a [Semantic Versioning][sem-ver] range that needs to be met.
 
 If you're impatient, you can force an update check by running _Auto Update Plus: Update Now_ from the [command palette][command-palette] or the Packages menu.
 
