@@ -56,7 +56,7 @@ async function prepareUpdate(forceUpdate = false): Promise<void> {
     outdatedPackages.map(async packageName => await updatePackage(packageName))
   );
 
-  notifyUser(updatedPackages.filter(item => item).map(item => item.value));
+  notifyUser(updatedPackages.filter(item => item.status === 'fulfilled').map(item => item.value));
   setLastUpdate();
   Signal.remove(message);
 }
