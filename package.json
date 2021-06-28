@@ -36,7 +36,7 @@
     "url": "https://github.com/idleberg/atom-auto-update-plus/issues"
   },
   "engines": {
-    "atom": ">=1.56.0 <2.0.0"
+    "atom": ">=1.52.0 <2.0.0"
   },
   "activationCommands": {
     "atom-workspace": [
