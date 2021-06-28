@@ -15,6 +15,7 @@ build({
   outfile: 'lib/index.js',
   platform: 'node',
   sourcemap: true,
+  target: 'es2016',
   watch: process.env.ESBUILD_WATCH && {
     onRebuild(error) {
       if (error) {
