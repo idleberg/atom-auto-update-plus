@@ -82,11 +82,11 @@ function updateIsDue(): boolean {
   const lastUpdateInterval = now - lastUpdate;
 
   if (intervalSeconds >= lastUpdateInterval) {
-    Logger.log(`The next update is due in ${Math.round((intervalSeconds - lastUpdateInterval) / 60)} minutes`);
+    Logger.log(`The next update check is due in ${Math.round((intervalSeconds - lastUpdateInterval) / 60)} minutes`);
     return false;
   }
 
-  Logger.log('The next update is due now');
+  Logger.log('The next update check is due now');
   return true;
 }
 
