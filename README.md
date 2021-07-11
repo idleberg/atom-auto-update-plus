@@ -54,7 +54,7 @@ $ git clone https://github.com/idleberg/atom-auto-update-plus auto-update-plus
 Install dependencies:
 
 ```bash
-cd auto-update-plus && npm install
+$ cd auto-update-plus && npm install
 ```
 
 ## Usage
