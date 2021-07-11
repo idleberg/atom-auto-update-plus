@@ -16,7 +16,8 @@
   "main": "./lib/index",
   "scripts": {
     "analyze": "source-map-explorer lib/**/*.js",
-    "build": "node ./tools/build.mjs",
+    "build": "npm run clean && node ./tools/build.mjs",
+    "clean": "rimraf ./lib",
     "dev": "npm run start",
     "format": "prettierx --write ./src",
     "lint:code": "eslint --ignore-path .gitignore --no-error-on-unmatched-pattern ./src/**/*.ts",
@@ -58,7 +59,6 @@
       "name": "busy-signal"
     }
   ],
-  "dependencies": {},
   "devDependencies": {
     "@atxm/developer-console": "^0.5.0",
     "@babel/core": "^7.14.3",
@@ -83,6 +83,7 @@
     "log-symbols": "^5.0.0",
     "npm-run-all": "^4.1.5",
     "prettierx": "^0.18.1",
+    "rimraf": "^3.0.2",
     "semver-diff": "^4.0.0",
     "source-map-explorer": "^2.5.2",
     "stylelint": "^13.13.1",
